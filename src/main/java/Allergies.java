@@ -7,6 +7,7 @@ import static spark.Spark.*;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 import java.util.Map;
+import spark.QueryParamsMap;
 
 public class Allergies {
 
@@ -37,7 +38,22 @@ public class Allergies {
 
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
-  }
+
+  //   get("/getscore", (request, response) -> {
+  //     HashMap model = new HashMap();
+  //     model.put("template", "templates/getscore.vtl");
+  //     System.out.println(request.queryMap("allergies").getClass());
+  //
+  //     QueryParamsMap myMap = request.queryMap("allergies");
+  //     System.out.println(myMap.hasKeys());
+  //     // String[] values = myMap.values();
+  //     // System.out.println(values[0]);
+  //     String allergies = request.queryParams("allergies");
+  //     model.put("allergies", allergies);
+  //
+  //     return new ModelAndView(model, layout);
+  //   }, new VelocityTemplateEngine());
+  // }
 
   public static Boolean checkInput(String scoreStr) {
 
@@ -96,10 +112,19 @@ public class Allergies {
       score -= 1;
     }
 
+    //String allergiesStr = allergies.toString();
 
-    String allergiesStr = allergies.toString();
+    String allergiesStr = "You are allergic to the following: ";
+
+    for (String allergy : allergies) {
+      allergiesStr = allergiesStr + allergy;
+      if (allergy.equals(allergies.get(allergies.size()-1))) {
+        allergiesStr = allergiesStr + ".";
+      } else {
+        allergiesStr = allergiesStr + ", ";
+      }
+    }
     return allergiesStr;
 
   }
-
 }

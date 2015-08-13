@@ -21,28 +21,28 @@ public class AllergiesTest extends FluentTest {
   @Test
   public void allergyArray_addsElements_true() {
     Allergies a = new Allergies();
-    String expValue = "[cat]";
+    String expValue = "You are allergic to the following: cat.";
     assertEquals(expValue, a.allergyArray(128));
   }
 
   @Test
   public void allergyArray_addsElements1_true() {
     Allergies a = new Allergies();
-    String expValue = "[cat, pollen]";
+    String expValue = "You are allergic to the following: cat, pollen.";
     assertEquals(expValue, a.allergyArray(192));
   }
 
   @Test
   public void allergyArray_addsElements2_true() {
     Allergies a = new Allergies();
-    String expValue = "[pollen, peanuts]";
+    String expValue = "You are allergic to the following: pollen, peanuts.";
     assertEquals(expValue, a.allergyArray(66));
   }
 
   @Test
   public void allergyArray_addsAllElements_true() {
     Allergies a = new Allergies();
-    String expValue = "[cat, pollen, chocolate, tomatoes, strawberries, shellfish, peanuts, eggs]";
+    String expValue = "You are allergic to the following: cat, pollen, chocolate, tomatoes, strawberries, shellfish, peanuts, eggs.";
     assertEquals(expValue, a.allergyArray(255));
   }
 
@@ -86,7 +86,7 @@ public class AllergiesTest extends FluentTest {
     goTo("http://localhost:4567/");
     fill("#score").with("28");
     submit(".btn");
-    assertThat(pageSource()).contains("[tomatoes, strawberries, shellfish]");
+    assertThat(pageSource()).contains("tomatoes, strawberries, shellfish");
   }
 
 }

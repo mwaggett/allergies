@@ -1,8 +1,42 @@
-<h1>What Allergies Do You Have?</h1>
-<form action='/results'>
-  <div class='form-group'>
-    <label>Input your score:</label>
-    <input type="text" name="score" id="score" class="form-control">
-  </div>
-  <button type="submit" id="choice_submit" class='btn'>What allergies?</button>
+<h1>Allergy Score</h1>
+
+<div>
+  <form action='/results'>
+    <div class='form-group'>
+      <label>Input your score:</label>
+      <input type="text" name="score" id="score" class="form-control">
+    </div>
+    <button type="submit" id="submit_score" class='btn'>What allergies?</button>
   </form>
+</div>
+<br>
+<br>
+<br>
+
+<!--
+<div>
+  <form action='/getscore'>
+    <div class='form-group'>
+      <label>What are you allergic to?</label>
+      <br>
+      <input type="checkbox" name="allergies[]" id="eggs" value="1">Eggs
+      <br>
+      <input type="checkbox" name="allergies[]" id="peanuts" value="2">Peanuts
+      <br>
+      <input type="checkbox" name="allergies[]" id="shellfish" value="4">Shellfish
+      <br>
+      <input type="checkbox" name="allergies[]" id="strawberries" value="8">Strawberries
+      <br>
+      <input type="checkbox" name="allergies[]" id="tomatoes" value="16">Tomatoes
+      <br>
+      <input type="checkbox" name="allergies[]" id="chocolate" value="32">Chocolate
+      <br>
+      <input type="checkbox" name="allergies[]" id="pollen" value="64">Pollen
+      <br>
+      <input type="checkbox" name="allergies[]" id="cats" value="128">Cats
+      <br>
+    </div>
+    <button type="submit" id="submit_allergy" class='btn'>What is the score?</button>
+  </form>
+</div>
+-->
