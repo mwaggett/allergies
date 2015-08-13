@@ -67,4 +67,26 @@ public class AllergiesTest extends FluentTest {
     assertEquals(expValue, a.checkInput("kangaroo"));
   }
 
+  @Test
+  public void rootTest() {
+    goTo("http://localhost:4567");
+    assertThat(pageSource()).contains("What Allergies Do You Have?");
+  }
+
+  @Test
+  public void results_displayErrorOnBadInput(){
+    goTo("http://localhost:4567/");
+    fill("#score").with("apple");
+    submit(".btn");
+    assertThat(pageSource()).contains("That is not valid input.");
+  }
+
+  @Test
+  public void results_displayAllergy(){
+    goTo("http://localhost:4567/");
+    fill("#score").with("28");
+    submit(".btn");
+    assertThat(pageSource()).contains("[tomatoes, strawberries, shellfish]");
+  }
+
 }

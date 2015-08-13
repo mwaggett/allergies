@@ -5,12 +5,39 @@ import java.util.ArrayList;
 import java.util.List;
 import static spark.Spark.*;
 import spark.ModelAndView;
-//import spark.template.velocity.VelocityTemplateEngine;
+import spark.template.velocity.VelocityTemplateEngine;
 import java.util.Map;
 
 public class Allergies {
 
-  public static void main(String[] args){}
+  public static void main(String[] args){
+    String layout = "templates/layout.vtl";
+
+    get("/", (request, response) -> {
+      HashMap model = new HashMap();
+      model.put("template", "templates/home.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/results", (request, response) -> {
+      HashMap model = new HashMap();
+      model.put("template", "templates/results.vtl");
+
+      String scoreStr = request.queryParams("score");
+      Boolean goodInput = checkInput(scoreStr);
+      if (goodInput) {
+        Integer score = Integer.parseInt(scoreStr);
+        model.put("score", score);
+        String allergies = allergyArray(score);
+        model.put("allergies", allergies);
+      } else {
+        String allergies = "That is not valid input.";
+        model.put("allergies", allergies);
+      }
+
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+  }
 
   public static Boolean checkInput(String scoreStr) {
 
@@ -68,11 +95,6 @@ public class Allergies {
       allergies.add("eggs");
       score -= 1;
     }
-
-//    HashMap<Integer, String> allergies = new HashMap<Integer,String>();
-//    allergies.put(128, "cats");
-//    allergies.put(64, "pollen");
-
 
 
     String allergiesStr = allergies.toString();
