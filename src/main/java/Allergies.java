@@ -53,7 +53,8 @@ public class Allergies {
   //
   //     return new ModelAndView(model, layout);
   //   }, new VelocityTemplateEngine());
-  // }
+  
+  }
 
   public static Boolean checkInput(String scoreStr) {
 
